@@ -8,7 +8,32 @@ namespace ChessGame
 {
     internal class Chessfield
     {
-        public static void CreateGame2DArray()
+        Gamecharacter[,] chessfield = new Gamecharacter[8,8];
+        
+        public Chessfield()
+        {
+            Place(chessfield);
+        }
+        public void DrawGame2DArrayFigures()
+        {
+            int offsetRow = 3;
+            int offsetCol = 5;
+            int rowHight = 4;
+            int colWidth = 6;
+
+            for (int row = 0; row< chessfield.GetLength(0); row++)
+            {
+                for(int col = 0; col< chessfield.GetLength(1); col++)
+                {
+                    if( chessfield[row,col] != null )
+                    {
+                        Console.SetCursorPosition(offsetCol+ col* colWidth, offsetRow + row * rowHight);
+                        Console.Write(chessfield[row,col].ToString());
+                    }
+                }
+            }
+        }
+            public void DrawGame2DArray()
         {
             //51 * 33
             Console.Clear();
@@ -92,12 +117,41 @@ namespace ChessGame
                     color = false;
                 }
             }
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.Write("Input:");
-            string? input = Console.ReadLine();
+            
+        }
+
+        public static void Place(Gamecharacter[,] ChessField)
+        {
+            for (int ChessColor = 0; ChessColor < 2; ChessColor++)
+            {
+                //Erstellen der Bauern
+                for (int j = 0; j < 8; j++)
+                {
+                    ChessField[6 - ChessColor * 5, j] = new Pawn { IsWhite = ChessColor == 0 };
+                }
+                int rookRow = ChessColor == 0 ? 7 : 0;
+                ChessField[rookRow, 0] = new Rook { IsWhite = ChessColor == 0 };
+                ChessField[rookRow, 7] = new Rook { IsWhite = ChessColor == 0 };
+
+
+                int knightRow = ChessColor == 0 ? 7 : 0;
+                ChessField[knightRow, 1] = new Knight { IsWhite = ChessColor == 0 };
+                ChessField[knightRow, 6] = new Knight { IsWhite = ChessColor == 0 };
+
+
+                int bishopRow = ChessColor == 0 ? 7 : 0;
+                ChessField[bishopRow, 2] = new Bishop { IsWhite = ChessColor == 0 };
+                ChessField[bishopRow, 5] = new Bishop { IsWhite = ChessColor == 0 };
+
+
+                int queenRow = ChessColor == 0 ? 7 : 0;
+                ChessField[queenRow, 3] = new Queen { IsWhite = ChessColor == 0 };
+
+
+                int kingRow = ChessColor == 0 ? 7 : 0;
+                ChessField[kingRow, 4] = new King { IsWhite = ChessColor == 0 };
+
+            }
         }
     }
 }

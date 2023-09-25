@@ -8,14 +8,14 @@ namespace ChessGame
 {
     internal class Pawn : Gamecharacter
     {
-        public override bool Movements()
+        public override bool CanMove()
         {
             throw new NotImplementedException();
         }
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return IsWhite ? "w P" : "b P";
         }
     }
 }

@@ -8,15 +8,17 @@ namespace ChessGame
 {
     abstract class Gamecharacter
     {
-        bool isWhite = false;
+        public bool  IsWhite { get; set; }
+       
+
         public bool CanMoveToTargetPosition()
         {
             return false;
         }
 
 
-        public abstract String ToString();
+        public abstract override String ToString();
 
-        public abstract bool Movements();
+        public abstract bool CanMove();
     }
 }

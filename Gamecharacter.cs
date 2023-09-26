@@ -11,8 +11,11 @@ namespace ChessGame
         public bool  IsWhite { get; set; }
        
 
-        public bool CanMoveToTargetPosition()
+        public bool CanMoveToTargetPosition(Gamecharacter[,]chessfield)
         {
+
+
+
             return false;
         }
 

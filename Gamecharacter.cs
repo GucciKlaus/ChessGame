@@ -13,7 +13,6 @@ namespace ChessGame
 
         public static bool CanMoveToTargetPosition(ChessMove chessmove, Gamecharacter[,] chessfield)
         {
-
             Gamecharacter tempstart = chessfield[chessmove.startposition.Row, chessmove.startposition.Column];
             if (tempstart.CanMove(chessmove, chessfield) == true)
             {
@@ -49,6 +48,18 @@ namespace ChessGame
             return chessfield;
         }
 
+        public static bool OnTurn(ChessMove chessMove, bool colorWhite, Gamecharacter[,] chessfield)
+        {
+            Gamecharacter temp = chessfield[chessMove.startposition.Row, chessMove.startposition.Column];
+            if(temp.IsWhite == colorWhite)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public abstract override String ToString();
 

@@ -8,51 +8,48 @@ namespace ChessGame
 {
     internal class Pawn : Gamecharacter
     {
-        //Klärt ab ob der Zug dieser Figur möglich ist
+       
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
-            bool throwmove = false;
-            bool jumpstart = false;
-            //Schauen ob der Zug grundsätzlich mit einem Bauern gültig ist
-            if (move.endposition.Row >= move.startposition.Row + 2 && move.endposition.Column >= move.startposition.Column++)
+            int rowDiff = move.endposition.Row - move.startposition.Row;
+            int colDiff = move.endposition.Column - move.startposition.Column;
+            //Vergleichen negativ
+            rowDiff = (rowDiff < 0) ? rowDiff * -1 : rowDiff;
+            colDiff = (colDiff < 0) ? colDiff * -1 : colDiff;
+
+            // erlaubten Grenzen 
+            if (rowDiff > 2 || colDiff > 1)
             {
                 return false;
             }
-            //Prüfen ob Werfen oder Jumpstart
-            if (move.endposition.Column < move.startposition.Column || move.endposition.Column > move.startposition.Column)
-            {
-                throwmove = true;
-            }
-            else if (move.startposition.Row == 6 || move.startposition.Row == 2)
-            {
-                if (move.endposition.Row - move.startposition.Row == 2)
-                {
-                    jumpstart = true;
-                }
-            }
-            //Prüfen ob wer im Weg steht
-            for (int row = 2; row < 8; row ++)
-            {
-                for (int col = 0; col < 8; col++)
-                {
-                    if (row == move.endposition.Row && col == move.endposition.Column)
-                    {
-                        if (board[row,col]  != null && throwmove==true)
-                        {
-                            return true;
-                        }
-                        if (board[row, col] == null)
-                        {
-                            return true;
-                        }
-                        if (board[row, col] == null && board[row--,col--] == null && jumpstart == true)
-                        {
-                            return true;
-                        }
-                    }
 
+            //  diagonal schlagen
+            if (rowDiff == 1 && colDiff == 1)
+            {
+                Gamecharacter targetCharacter = board[move.endposition.Row, move.endposition.Column];
+                if (targetCharacter != null && targetCharacter.IsWhite != this.IsWhite)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            //  Doppelschritt machen kann (nur zu Beginn)
+            if (rowDiff == 2 && colDiff == 0 && move.startposition.Row == 6 || move.startposition.Row==1 && board[move.endposition.Row, move.endposition.Column] == null)
+            {
+                int targetRow = (move.startposition.Row + move.endposition.Row) / 2;
+                if (board[targetRow, move.endposition.Column] == null)
+                {
+                    return true;
                 }
             }
+
+            // Einzelschritt machen kann
+            if (rowDiff == 1 && colDiff == 0 && board[move.endposition.Row, move.endposition.Column] == null)
+            {
+                return true;
+            }
+
             return false;
         }
 

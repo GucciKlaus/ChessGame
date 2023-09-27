@@ -31,22 +31,23 @@ internal class Program
             input = Console.ReadLine();
             if (ChessMove.TryParse(input, out ChessMove move))
             {
-                if(Gamecharacter.CanMoveToTargetPosition(move,field.chessfield) == true)
+                if(Gamecharacter.CanMoveToTargetPosition(move,field.chessfield) == true && Gamecharacter.OnTurn(move,turnWhite,field.chessfield))
                 {
                     field.chessfield = Gamecharacter.ChangePosition(move,field.chessfield);
+                    if (turnWhite == true)
+                    {
+                        turnWhite = false;
+                    }
+                    else
+                    {
+                        turnWhite = true;
+                    }
                 }
                 else
                 {
                     inputcorrect = false;
                 }
-                if (turnWhite == true)
-                {
-                    turnWhite = false;
-                }
-                else
-                {
-                    turnWhite = true;
-                }
+                
             }
             else
             {

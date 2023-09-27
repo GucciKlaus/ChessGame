@@ -7,6 +7,7 @@ internal class Program
     {
         Chessfield field = new Chessfield();
         bool inputcorrect = true;
+        bool turnWhite = true;
         string? input = "";
         // Game loop
         do
@@ -22,12 +23,23 @@ internal class Program
             if(inputcorrect != true)
             {
                 Console.WriteLine("Invalid Input");
+                inputcorrect = true;
             }
+            Console.WriteLine(TurnOrder(turnWhite));
+            
             Console.Write("Input:");
             input = Console.ReadLine();
             if (ChessMove.TryParse(input, out ChessMove move))
             {
-                Console.Write(move.ToString());
+                Gamecharacter.CanMoveToTargetPosition(move,field.chessfield);
+                if (turnWhite == true)
+                {
+                    turnWhite = false;
+                }
+                else
+                {
+                    turnWhite = true;
+                }
             }
             else
             {
@@ -36,6 +48,16 @@ internal class Program
 
         } while (input.ToLower() != "ende");
 
+    }
+
+    public static String TurnOrder(bool isWhite)
+    {
+        if(isWhite == true)
+        {
+            return "Weiß ist am Zug";
+        }else {
+            return "Schwarz ist am Zug";
+                }
     }
 
 

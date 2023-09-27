@@ -8,14 +8,14 @@ namespace ChessGame
 {
     internal class ChessMove
     {
-        public String startposition { get; set; }
-        public String endposition { get; set; }
+        public ChessPosition startposition { get; set; }
+        public ChessPosition endposition { get; set; }
 
         public static bool TryParse(string s, out ChessMove move)
         {
             move = new ChessMove();
-            s = s.Trim();
-
+            s = s.Trim().ToLower();
+            
             if(s.Length == 5 && s[2] == '-')
             {
                 String[] position = s.Split('-');
@@ -29,9 +29,15 @@ namespace ChessGame
                         return false;
                     }
                 }
-                move.startposition = position[0];
-                move.endposition = position[1];
-                return true;
+                ChessPosition chessPosition = new ChessPosition();
+                if (ChessPosition.TryParse(position[0], out var startPosition) && ChessPosition.TryParse(position[1], out var endPosition))
+                {
+                    move.startposition = startPosition;
+                    move.endposition = endPosition;
+                    return true;
+                }
+                else { move = null; return false; }
+                
             }
             else
             {

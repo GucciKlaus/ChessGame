@@ -9,7 +9,7 @@ namespace ChessGame
 {
     internal class Chessfield
     {
-        Gamecharacter[,] chessfield = new Gamecharacter[8,8];
+       public Gamecharacter[,] chessfield = new Gamecharacter[8,8];
         
         public Chessfield()
         {

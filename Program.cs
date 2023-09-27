@@ -31,7 +31,14 @@ internal class Program
             input = Console.ReadLine();
             if (ChessMove.TryParse(input, out ChessMove move))
             {
-                Gamecharacter.CanMoveToTargetPosition(move,field.chessfield);
+                if(Gamecharacter.CanMoveToTargetPosition(move,field.chessfield) == true)
+                {
+                    field.chessfield = Gamecharacter.ChangePosition(move,field.chessfield);
+                }
+                else
+                {
+                    inputcorrect = false;
+                }
                 if (turnWhite == true)
                 {
                     turnWhite = false;

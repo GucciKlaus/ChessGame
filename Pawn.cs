@@ -9,7 +9,7 @@ namespace ChessGame
     internal class Pawn : Gamecharacter
     {
         //Klärt ab ob der Zug dieser Figur möglich ist
-        public override bool CanMove(ChessMove move, Chessfield[,] board)
+        public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
             bool throwmove = false;
             bool jumpstart = false;

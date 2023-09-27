@@ -13,17 +13,17 @@ namespace ChessGame
 
         public static bool TryParse(string s, out ChessPosition position)
         {
-            position = null;
+            position = new ChessPosition();
             if (s[0] >= 'a' && s[0] <= 'h' && s[1] >= '1' && s[1] <= '8')
             {
-                int column = s[0] - 'a' + 1;
-                int row = s[1] - '0';
+                int column = s[0] - 'a';
+                int row = '8' - s[1];
 
                 position.Row = row;
                 position.Column = column;
                 return true;
             }
-
+            position = null;
             return false;
         }
     }

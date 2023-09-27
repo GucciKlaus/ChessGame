@@ -8,7 +8,7 @@ namespace ChessGame
 {
     internal class Rook : Gamecharacter
     {
-        public override bool CanMove(ChessMove move, Chessfield[,] board)
+        public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
             throw new NotImplementedException();
         }

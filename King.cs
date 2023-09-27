@@ -8,7 +8,7 @@ namespace ChessGame
 {
     internal class King : Gamecharacter
     {
-        public override bool CanMove()
+        public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
             throw new NotImplementedException();
         }

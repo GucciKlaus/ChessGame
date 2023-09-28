@@ -10,7 +10,72 @@ namespace ChessGame
     {
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
-            throw new NotImplementedException();
+            int rowDif = move.endposition.Row - move.startposition.Row;
+            int colDif = move.endposition.Column - move.startposition.Column;
+            int startRow = move.startposition.Row;
+            int endRow = move.endposition.Row;
+            int startCol = move.startposition.Column;
+            int endCol = move.endposition.Column;
+            bool verificateCrash = false;
+
+
+            //Vergleich negativ
+            rowDif = rowDif > 0 ? rowDif : rowDif * -1;
+            colDif = colDif > 0 ? colDif : colDif * -1;
+            //Vergleichen ob end/start row und end/start col größer ist
+            if (startRow > endRow)
+            {
+                int temp = startRow;
+                startRow = endRow;
+                endRow = temp;
+            }
+
+            if (startCol > endCol)
+            {
+                int temp = startCol;
+                startCol = endCol;
+                endCol = temp;
+            }
+
+
+            
+            if (rowDif == colDif)
+            {
+                for (int row = startRow; row < endRow; row++)
+                {
+                    for (int col = startCol; col < endCol; col++)
+                    {
+                        if(startRow+1 == endRow && startCol+1 == endCol)
+                        {
+                            verificateCrash = true;
+                            break;
+                        }
+
+                        if (board[row, col] == null)
+                        {
+                            verificateCrash = true;
+                        }
+                        else
+                        {
+                            verificateCrash = false; break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            if (verificateCrash == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         public override string ToString()

@@ -25,8 +25,7 @@ namespace ChessGame
             //  diagonal schlagen
             if (rowDiff == 1 && colDiff == 1)
             {
-                Gamecharacter targetCharacter = board[move.endposition.Row, move.endposition.Column];
-                if (targetCharacter != null && targetCharacter.IsWhite != this.IsWhite)
+                if (board[move.endposition.Row,move.endposition.Column] != null)
                 {
                     return true;
                 }

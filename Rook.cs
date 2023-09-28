@@ -58,7 +58,9 @@ namespace ChessGame
                             return true;
                         }
 
-                        else { verificateCrash = false; }
+                        else { verificateCrash = false;
+                            break;
+                        }
                     }
 
                 }

@@ -10,7 +10,7 @@ namespace ChessGame
     {
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public override string ToString()

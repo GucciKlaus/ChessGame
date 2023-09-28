@@ -8,6 +8,7 @@ namespace ChessGame
 {
     internal class Rook : Gamecharacter
     {
+        //Nur reihen oder zeilen
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
             throw new NotImplementedException();

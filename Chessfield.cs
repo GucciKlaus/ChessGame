@@ -9,8 +9,8 @@ namespace ChessGame
 {
     internal class Chessfield
     {
-       public Gamecharacter[,] chessfield = new Gamecharacter[8,8];
-        
+        public Gamecharacter[,] chessfield = new Gamecharacter[8, 8];
+
         public Chessfield()
         {
             Place(chessfield);
@@ -22,19 +22,19 @@ namespace ChessGame
             int rowHight = 4;
             int colWidth = 6;
 
-            for (int row = 0; row< chessfield.GetLength(0); row++)
+            for (int row = 0; row < chessfield.GetLength(0); row++)
             {
-                for(int col = 0; col< chessfield.GetLength(1); col++)
+                for (int col = 0; col < chessfield.GetLength(1); col++)
                 {
-                    if( chessfield[row,col] != null )
+                    if (chessfield[row, col] != null)
                     {
-                        Console.SetCursorPosition(offsetCol+ col* colWidth, offsetRow + row * rowHight);
-                        Console.Write(chessfield[row,col].ToString());
+                        Console.SetCursorPosition(offsetCol + col * colWidth, offsetRow + row * rowHight);
+                        Console.Write(chessfield[row, col].ToString());
                     }
                 }
             }
         }
-            public void DrawGame2DArray()
+        public void DrawGame2DArray()
         {
             //51 * 33
             Console.Clear();
@@ -118,7 +118,7 @@ namespace ChessGame
                     color = false;
                 }
             }
-            
+
         }
 
         public static void Place(Gamecharacter[,] ChessField)

@@ -8,7 +8,6 @@ namespace ChessGame
 {
     internal class Pawn : Gamecharacter
     {
-       
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
             int rowDiff = move.endposition.Row - move.startposition.Row;

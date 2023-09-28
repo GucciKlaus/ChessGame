@@ -126,10 +126,10 @@ namespace ChessGame
             for (int ChessColor = 0; ChessColor < 2; ChessColor++)
             {
                 //Erstellen der Bauern
-                for (int j = 0; j < 8; j++)
-                {
-                    ChessField[6 - ChessColor * 5, j] = new Pawn { IsWhite = ChessColor == 0 };
-                }
+                //for (int j = 0; j < 8; j++)
+                //{
+                //    ChessField[6 - ChessColor * 5, j] = new Pawn { IsWhite = ChessColor == 0 };
+                //}
                 int rookRow = ChessColor == 0 ? 7 : 0;
                 ChessField[rookRow, 0] = new Rook { IsWhite = ChessColor == 0 };
                 ChessField[rookRow, 7] = new Rook { IsWhite = ChessColor == 0 };

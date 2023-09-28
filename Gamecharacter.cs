@@ -14,6 +14,7 @@ namespace ChessGame
         public static bool CanMoveToTargetPosition(ChessMove chessmove, Gamecharacter[,] chessfield)
         {
             Gamecharacter tempstart = chessfield[chessmove.startposition.Row, chessmove.startposition.Column];
+            if(tempstart == null) return false;
             if (tempstart.CanMove(chessmove, chessfield) == true)
             {
                 return ValidateMove(chessfield, tempstart, chessmove);

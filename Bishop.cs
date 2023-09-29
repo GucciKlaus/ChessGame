@@ -10,12 +10,12 @@ namespace ChessGame
     {
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
-            int rowDif = move.endposition.Row - move.startposition.Row;
-            int colDif = move.endposition.Column - move.startposition.Column;
-            int startRow = move.startposition.Row;
-            int endRow = move.endposition.Row;
-            int startCol = move.startposition.Column;
-            int endCol = move.endposition.Column;
+            int rowDif = move.endposition.row - move.startposition.row;
+            int colDif = move.endposition.column - move.startposition.column;
+            int startRow = move.startposition.row;
+            int endRow = move.endposition.row;
+            int startCol = move.startposition.column;
+            int endCol = move.endposition.column;
             bool verificateCrash = true;
 
 

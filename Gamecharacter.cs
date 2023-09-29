@@ -13,7 +13,7 @@ namespace ChessGame
 
         public static bool CanMoveToTargetPosition(ChessMove chessmove, Gamecharacter[,] chessfield)
         {
-            Gamecharacter tempstart = chessfield[chessmove.startposition.Row, chessmove.startposition.Column];
+            Gamecharacter tempstart = chessfield[chessmove.startposition.row, chessmove.startposition.column];
             if(tempstart == null) return false;
             if (tempstart.CanMove(chessmove, chessfield) == true)
             {
@@ -72,9 +72,9 @@ namespace ChessGame
         {
             //Nach endposition vergleiche und dann schauen ob da eine figur ist und wenn ja schau ob schwarz oder weiß wenn sie nicht diesselbe farbe wie die aktuelle figur hat true zurückliefern
             Gamecharacter tempend = null;
-            if (chessfield[chessmove.endposition.Row, chessmove.endposition.Column] != null)
+            if (chessfield[chessmove.endposition.row, chessmove.endposition.column] != null)
             {
-                tempend = chessfield[chessmove.endposition.Row, chessmove.endposition.Column];
+                tempend = chessfield[chessmove.endposition.row, chessmove.endposition.column];
                 if (tempend.IsWhite == tempstart.IsWhite)
                 {
                     return false;
@@ -89,15 +89,15 @@ namespace ChessGame
 
         public static Gamecharacter[,] ChangePosition(ChessMove chessMove, Gamecharacter[,] chessfield)
         {
-            Gamecharacter temp = chessfield[chessMove.startposition.Row,chessMove.startposition.Column];
-            chessfield[chessMove.startposition.Row, chessMove.startposition.Column] = null;
-            chessfield[chessMove.endposition.Row, chessMove.endposition.Column] = temp;
+            Gamecharacter temp = chessfield[chessMove.startposition.row,chessMove.startposition.column];
+            chessfield[chessMove.startposition.row, chessMove.startposition.column] = null;
+            chessfield[chessMove.endposition.row, chessMove.endposition.column] = temp;
             return chessfield;
         }
 
         public static bool OnTurn(ChessMove chessMove, bool colorWhite, Gamecharacter[,] chessfield)
         {
-            Gamecharacter temp = chessfield[chessMove.startposition.Row, chessMove.startposition.Column];
+            Gamecharacter temp = chessfield[chessMove.startposition.row, chessMove.startposition.column];
             if(temp.IsWhite == colorWhite)
             {
                 return true;

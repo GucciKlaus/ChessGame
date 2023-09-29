@@ -10,8 +10,8 @@ namespace ChessGame
     {
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
-            int rowDiff = move.endposition.Row - move.startposition.Row;
-            int colDiff = move.endposition.Column - move.startposition.Column;
+            int rowDiff = move.endposition.row - move.startposition.row;
+            int colDiff = move.endposition.column - move.startposition.column;
             //Vergleichen negativ
             rowDiff = (rowDiff < 0) ? rowDiff * -1 : rowDiff;
             colDiff = (colDiff < 0) ? colDiff * -1 : colDiff;

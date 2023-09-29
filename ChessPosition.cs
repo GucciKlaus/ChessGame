@@ -8,8 +8,8 @@ namespace ChessGame
 {
     internal class ChessPosition
     {
-        public int Row { get; set; }
-        public int Column { get; set; }
+        public int row { get; set; }
+        public int column { get; set; }
 
         public static bool TryParse(string s, out ChessPosition position)
         {
@@ -19,8 +19,8 @@ namespace ChessGame
                 int column = s[0] - 'a';
                 int row = '8' - s[1];
 
-                position.Row = row;
-                position.Column = column;
+                position.row = row;
+                position.column = column;
                 return true;
             }
             position = null;

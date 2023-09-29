@@ -10,8 +10,8 @@ namespace ChessGame
     {
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
-            int rowDiff = move.endposition.Row - move.startposition.Row;
-            int colDiff = move.endposition.Column - move.startposition.Column;
+            int rowDiff = move.endposition.row - move.startposition.row;
+            int colDiff = move.endposition.column - move.startposition.column;
             //Vergleichen negativ
             rowDiff = (rowDiff < 0) ? rowDiff * -1 : rowDiff;
             colDiff = (colDiff < 0) ? colDiff * -1 : colDiff;
@@ -25,7 +25,7 @@ namespace ChessGame
             //  diagonal schlagen
             if (rowDiff == 1 && colDiff == 1)
             {
-                if (board[move.endposition.Row,move.endposition.Column] != null)
+                if (board[move.endposition.row,move.endposition.column] != null)
                 {
                     return true;
                 }
@@ -33,17 +33,17 @@ namespace ChessGame
             }
 
             //  Doppelschritt machen kann (nur zu Beginn)
-            if (rowDiff == 2 && colDiff == 0 && move.startposition.Row == 6 || move.startposition.Row==1 && board[move.endposition.Row, move.endposition.Column] == null)
+            if (rowDiff == 2 && colDiff == 0 && move.startposition.row == 6 || move.startposition.row==1 && board[move.endposition.row, move.endposition.column] == null)
             {
-                int targetRow = (move.startposition.Row + move.endposition.Row) / 2;
-                if (board[targetRow, move.endposition.Column] == null)
+                int targetRow = (move.startposition.row + move.endposition.row) / 2;
+                if (board[targetRow, move.endposition.column] == null)
                 {
                     return true;
                 }
             }
 
             // Einzelschritt machen kann
-            if (rowDiff == 1 && colDiff == 0 && board[move.endposition.Row, move.endposition.Column] == null)
+            if (rowDiff == 1 && colDiff == 0 && board[move.endposition.row, move.endposition.column] == null)
             {
                 return true;
             }

@@ -13,9 +13,12 @@ internal class Program
         do
         {
             bool[] alive = CheckEnd(field.chessfield);
-            if (alive[0] == false) {
+            if (alive[0] == false)
+            {
                 Console.WriteLine("Black wins!");
-                    break; }else if (alive[1] == false)
+                break;
+            }
+            else if (alive[1] == false)
             {
                 Console.WriteLine("White wins!");
                 break;
@@ -28,20 +31,20 @@ internal class Program
             Console.ForegroundColor = ConsoleColor.White;
 
             Console.SetCursorPosition(0, 34);
-            if(inputcorrect != true)
+            if (inputcorrect != true)
             {
                 Console.WriteLine("Invalid Input");
                 inputcorrect = true;
             }
             Console.WriteLine(TurnOrder(turnWhite));
-            
+
             Console.Write("Input:");
             input = Console.ReadLine();
             if (ChessMove.TryParse(input, out ChessMove move))
             {
-                if(Gamecharacter.CanMoveToTargetPosition(move,field.chessfield) == true && Gamecharacter.OnTurn(move,turnWhite,field.chessfield))
+                if (Gamecharacter.CanMoveToTargetPosition(move, field.chessfield) == true && Gamecharacter.OnTurn(move, turnWhite, field.chessfield))
                 {
-                    field.chessfield = Gamecharacter.ChangePosition(move,field.chessfield);
+                    field.chessfield = Gamecharacter.ChangePosition(move, field.chessfield);
                     if (turnWhite == true)
                     {
                         turnWhite = false;
@@ -55,7 +58,7 @@ internal class Program
                 {
                     inputcorrect = false;
                 }
-                
+
             }
             else
             {
@@ -68,12 +71,14 @@ internal class Program
 
     public static String TurnOrder(bool isWhite)
     {
-        if(isWhite == true)
+        if (isWhite == true)
         {
             return "Weiß ist am Zug";
-        }else {
+        }
+        else
+        {
             return "Schwarz ist am Zug";
-                }
+        }
     }
 
     public static bool[] CheckEnd(Gamecharacter[,] chessfield)
@@ -83,8 +88,8 @@ internal class Program
         result[1] = Gamecharacter.IsKingBlackAlive(chessfield);
         return result;
     }
-    
-    
+
+
 }
 
 

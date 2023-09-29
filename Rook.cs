@@ -11,12 +11,12 @@ namespace ChessGame
         //Nur reihen oder zeilen
         public override bool CanMove(ChessMove move, Gamecharacter[,] board)
         {
-            int rowDiff = move.endposition.Row - move.startposition.Row;
-            int colDiff = move.endposition.Column - move.startposition.Column;
-            int startRow = move.startposition.Row;
-            int endRow = move.endposition.Row;
-            int startColumn = move.startposition.Column;
-            int endColumn = move.endposition.Column;
+            int rowDiff = move.endposition.row - move.startposition.row;
+            int colDiff = move.endposition.column - move.startposition.column;
+            int startRow = move.startposition.row;
+            int endRow = move.endposition.row;
+            int startColumn = move.startposition.column;
+            int endColumn = move.endposition.column;
             //Vergleichen negativ
             rowDiff = (rowDiff < 0) ? rowDiff * -1 : rowDiff;
             colDiff = (colDiff < 0) ? colDiff * -1 : colDiff;
@@ -49,9 +49,9 @@ namespace ChessGame
                             continue;
                         }
 
-                        if (board[row, move.endposition.Column] != null)
+                        if (board[row, move.endposition.column] != null)
                         {
-                            if (row++ == move.endposition.Row)
+                            if (row++ == move.endposition.row)
                             {
                                 return true;
                             }
@@ -74,9 +74,9 @@ namespace ChessGame
                             continue;
                         }
 
-                        if (board[move.endposition.Row, col] != null)
+                        if (board[move.endposition.row, col] != null)
                         {
-                            if(col++ == move.endposition.Row)
+                            if(col++ == move.endposition.row)
                             {
                                 return true;
                             }

@@ -16,7 +16,7 @@ namespace ChessGame
             int endRow = move.endposition.Row;
             int startCol = move.startposition.Column;
             int endCol = move.endposition.Column;
-            bool verificateCrash = false;
+            bool verificateCrash = true;
 
 
             //Vergleich negativ
@@ -51,14 +51,19 @@ namespace ChessGame
                             break;
                         }
 
-                        if (board[row, col] == null)
+                        if (board[row, col] != null)
                         {
-                            verificateCrash = true;
+                            if(row+1 == endRow || col+1 == endCol)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                verificateCrash = false;
+                            }
+                            
                         }
-                        else
-                        {
-                            verificateCrash = false; break;
-                        }
+                        
                     }
                 }
             }

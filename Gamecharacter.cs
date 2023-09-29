@@ -22,6 +22,52 @@ namespace ChessGame
             return false;
         }
 
+        public static bool IsKingWhiteAlive(Gamecharacter[,] chessfield)
+        {
+            bool whiteKing = false;
+            for(int row = 0; row < chessfield.GetLength(0); row++)
+            {
+                for(int col = 0; col < chessfield.GetLength(1); col++)
+                {
+                    if (chessfield[row,col] != null)
+                    {
+                        Gamecharacter temp = chessfield[row,col];
+                        if (temp.GetType() == typeof(King))
+                        {
+                            if(temp.IsWhite == true)
+                            {
+                                whiteKing = true;
+                            }
+                        }
+                    }
+                }
+            }
+            return whiteKing;
+        }
+
+        public static bool IsKingBlackAlive(Gamecharacter[,] chessfield)
+        {
+            bool blackKing = false;
+            for (int row = 0; row < chessfield.GetLength(0); row++)
+            {
+                for (int col = 0; col < chessfield.GetLength(1); col++)
+                {
+                    if (chessfield[row, col] != null)
+                    {
+                        Gamecharacter temp = chessfield[row, col];
+                        if (temp.GetType() == typeof(King))
+                        {
+                            if (temp.IsWhite == false)
+                            {
+                                blackKing = true;
+                            }
+                        }
+                    }
+                }
+            }
+            return blackKing;
+        }
+
         public static bool ValidateMove(Gamecharacter[,] chessfield, Gamecharacter tempstart, ChessMove chessmove)
         {
             //Nach endposition vergleiche und dann schauen ob da eine figur ist und wenn ja schau ob schwarz oder weiß wenn sie nicht diesselbe farbe wie die aktuelle figur hat true zurückliefern

@@ -21,7 +21,7 @@ namespace ChessGame
             rowDiff = (rowDiff < 0) ? rowDiff * -1 : rowDiff;
             colDiff = (colDiff < 0) ? colDiff * -1 : colDiff;
             //Prüfen ob sich Figuren im Weg des zuges befinden
-            bool verificateCrash = false;
+            bool verificateCrash = true;
             //Vergleichen ob die Startrow oder die endrow größer ist
             if (startRow > endRow)
             {
@@ -43,23 +43,23 @@ namespace ChessGame
                 {
                     for (int row = startRow; row <= endRow; row++)
                     {
-                        if (startRow+1 == endRow)
+                        if (startRow + 1 == endRow)
                         {
                             verificateCrash = true;
                             continue;
                         }
 
-                        if (board[row, move.endposition.Column] == null)
+                        if (board[row, move.endposition.Column] != null)
                         {
-                            verificateCrash = true;
-                        }
-                        else if (board[row, move.startposition.Column] != null && row++ == move.endposition.Row)
-                        {
-                            return true;
-                        }
+                            if (row++ == move.endposition.Row)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                verificateCrash = false;
+                            }
 
-                        else { verificateCrash = false;
-                            break;
                         }
                     }
 
@@ -68,21 +68,25 @@ namespace ChessGame
                 {
                     for (int col = startColumn; col <= endColumn; col++)
                     {
-                        if (startColumn+1 == endColumn)
+                        if (startColumn + 1 == endColumn)
                         {
                             verificateCrash = true;
                             continue;
                         }
 
-                        if (board[move.startposition.Row, col] == null)
+                        if (board[move.endposition.Row, col] != null)
                         {
-                            verificateCrash = true;
+                            if(col++ == move.endposition.Row)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                verificateCrash = false;
+                            }
+                            
                         }
-                        else if (board[move.startposition.Row, col] != null && col++ == move.endposition.Row)
-                        {
-                            return true;
-                        }
-                        else { verificateCrash = false; }
+
                     }
 
                 }

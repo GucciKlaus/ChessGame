@@ -12,12 +12,20 @@ internal class Program
         // Game loop
         do
         {
+            bool[] alive = CheckEnd(field.chessfield);
+            if (alive[0] == false) {
+                Console.WriteLine("Black wins!");
+                    break; }else if (alive[1] == false)
+            {
+                Console.WriteLine("White wins!");
+                break;
+            }
+
             field.DrawGame2DArray();
             field.DrawGame2DArrayFigures();
 
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-
 
             Console.SetCursorPosition(0, 34);
             if(inputcorrect != true)
@@ -68,7 +76,13 @@ internal class Program
                 }
     }
 
-
+    public static bool[] CheckEnd(Gamecharacter[,] chessfield)
+    {
+        bool[] result = new bool[2];
+        result[0] = Gamecharacter.IsKingWhiteAlive(chessfield);
+        result[1] = Gamecharacter.IsKingBlackAlive(chessfield);
+        return result;
+    }
     
     
 }

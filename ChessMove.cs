@@ -8,8 +8,8 @@ namespace ChessGame
 {
     internal class ChessMove
     {
-        public ChessPosition startposition { get; set; }
-        public ChessPosition endposition { get; set; }
+        public ChessPosition? startposition { get; set; }
+        public ChessPosition? endposition { get; set; }
 
         public static bool TryParse(string s, out ChessMove move)
         {

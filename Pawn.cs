@@ -35,8 +35,8 @@ namespace ChessGame
             //  Doppelschritt machen kann (nur zu Beginn)
             if (rowDiff == 2 && colDiff == 0 && move.startposition.row == 6 || move.startposition.row==1 && board[move.endposition.row, move.endposition.column] == null)
             {
-                int targetRow = (move.startposition.row + move.endposition.row) / 2;
-                if (board[targetRow, move.endposition.column] == null)
+                int betweenrow = (move.startposition.row + move.endposition.row) / 2;
+                if (board[betweenrow, move.endposition.column] == null)
                 {
                     return true;
                 }
